@@ -2,37 +2,63 @@ import React, { FormEvent, useEffect, useState } from "react";
 import TodoList from "../../Components/TodoList/todoList";
 import "./todo.scss";
 
-interface TodoType {
+export interface TodoType {
   id: number;
   title: string;
   status: "pending" | "done";
 }
 
 const Todo = () => {
-  const [title, setTitle] = useState<string>("");
-  const [todoItem, setTodoItem] = useState<TodoType>();
+  const [value, setValue] = useState<string>("");
+  const [todoItem, setTodoItem] = useState<Array<TodoType>>([
+    {
+      id: 1,
+      title: "12345",
+      status: "pending",
+    },
+  ]);
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setTitle("");
+
+    const target = e.target as typeof e.target & {
+      title: { value: string };
+    };
+
+    const title = target.title.value;
+
+    console.log("title ==>", title);
+
+    setTodoItem((item) => [
+      { id: item.length + 1, title: title, status: "pending" },
+      ...todoItem,
+    ]);
+
+    setValue("");
   };
 
-  const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+  const handleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   };
 
   useEffect(() => {
-    console.log("title", title);
-  }, [title]);
+    console.log("value", value);
+  }, [value]);
+
+  useEffect(() => {
+    console.log("todo", todoItem);
+  }, [todoItem]);
 
   return (
     <div>
       <form onSubmit={handleOnSubmit}>
-        <input type="text" name="title" value={title} onChange={handleTitle} />
+        <input type="text" name="title" value={value} onChange={handleValue} />
         <button>add</button>
       </form>
       {/* 투두작성 */}
-      <TodoList />
+      <TodoList
+      // items={todoItem}
+      />
     </div>
   );
 };
