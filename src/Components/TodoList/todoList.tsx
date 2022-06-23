@@ -1,11 +1,14 @@
+import { useEffect } from "react";
 import { TodoType } from "../../Page/Todo/todo";
 
-interface Todo {
-  items?: TodoType;
-}
+type Todo = {
+  items: TodoType[];
+};
 
-const TodoList = (props: Todo) => {
-  const { items } = props;
+const TodoList = ({ items }: Todo): React.ReactElement => {
+  useEffect(() => {
+    console.log("items", items);
+  }, [items]);
 
   return (
     <>

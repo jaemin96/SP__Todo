@@ -10,11 +10,16 @@ export interface TodoType {
 
 const Todo = () => {
   const [value, setValue] = useState<string>("");
-  const [todoItem, setTodoItem] = useState<Array<TodoType>>([
+  const [todoItem, setTodoItem] = useState<TodoType[]>([
     {
       id: 1,
-      title: "12345",
+      title: "first-item",
       status: "pending",
+    },
+    {
+      id: 2,
+      title: "second-item",
+      status: "done",
     },
   ]);
 
@@ -30,8 +35,8 @@ const Todo = () => {
     console.log("title ==>", title);
 
     setTodoItem((item) => [
-      { id: item.length + 1, title: title, status: "pending" },
       ...todoItem,
+      { id: item.length + 1, title: title, status: "pending" },
     ]);
 
     setValue("");
@@ -56,9 +61,7 @@ const Todo = () => {
         <button>add</button>
       </form>
       {/* 투두작성 */}
-      <TodoList
-      // items={todoItem}
-      />
+      <TodoList items={todoItem} />
     </div>
   );
 };
