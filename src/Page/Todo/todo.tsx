@@ -55,10 +55,16 @@ const Todo = () => {
   }, [todoItem]);
 
   return (
-    <div>
-      <form onSubmit={handleOnSubmit}>
-        <input type="text" name="title" value={value} onChange={handleValue} />
-        <button>add</button>
+    <div className="todoWrapper">
+      <form onSubmit={handleOnSubmit} className="todoWrapper__iuputWrapper">
+        <input
+          type="text"
+          name="title"
+          value={value}
+          onChange={handleValue}
+          className="todoWrapper__iuputWrapper_input"
+        />
+        <button className="todoWrapper__iuputWrapper_btn">add</button>
       </form>
       {/* 투두작성 */}
       <TodoList items={todoItem} />

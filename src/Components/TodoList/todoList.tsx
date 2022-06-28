@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { TodoType } from "../../Page/Todo/todo";
+import "./todoList.scss";
 
 type Todo = {
   items: TodoType[];
@@ -21,7 +22,13 @@ const TodoList = ({ items }: Todo): React.ReactElement => {
     <>
       {todos &&
         todos.map((item: TodoType, index: number) => {
-          return <h1 key={item.id}>{item.title}</h1>;
+          return (
+            <div key={item.id} className="listWrapper">
+              <span className="listWrapper__id">{index + 1}</span>
+              <h1 className="listWrapper__title">{item.title}</h1>
+              <span className="listWrapper__delete">x</span>
+            </div>
+          );
         })}
     </>
   );

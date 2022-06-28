@@ -1,0 +1,30 @@
+.listWrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+
+  &__id {
+    font-size: 2rem;
+    color: blueviolet;
+    margin-right: 1rem;
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 1rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    color: chocolate;
+  }
+
+  &__delete {
+    font-size: 2rem;
+    margin-left: 2rem;
+    font-weight: 800;
+    border: 1px solid black;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    line-height: 1.5rem;
+  }
+}
